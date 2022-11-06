@@ -1,0 +1,13 @@
+  BooleanBinding changes[] = {
+            chkUseInference.selectedProperty().isNotEqualTo(Settings.useInferenceProperty),
+            pickerHintStrokeColor.valueProperty().isNotEqualTo(Settings.hintStrokeColorProperty),
+            fileTFLabelMap.textProperty().isNotEqualTo(Settings.tfLabelMapFileProperty),
+            
+            
+            .textProperty().isNotEqualTo(Settings.tfSavedModelDirProperty),
+    };
+    dirtyProperty.bind(EasyBind.combine(
+            FXCollections.observableArrayList(changes), stream -> stream.reduce((a, b) -> a | b).orElse(false)));
+
+    load();
+}
